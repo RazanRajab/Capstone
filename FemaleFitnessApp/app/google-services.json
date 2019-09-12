@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "243824450941",
+    "firebase_url": "https://femalefitnessapp-4b234.firebaseio.com",
+    "project_id": "femalefitnessapp-4b234",
+    "storage_bucket": "femalefitnessapp-4b234.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:243824450941:android:0a74d818d56546b1ee4014",
+        "android_client_info": {
+          "package_name": "com.example.femalefitnessapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "243824450941-ccfm2kemd45ikgbs04r1io5a3a0s8g7l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.femalefitnessapp",
+            "certificate_hash": "ded5fc0afac6acbcd23eddefb1239299357e266e"
+          }
+        },
+        {
+          "client_id": "243824450941-0bghreg1e12es7vt27rd2q59r7b4c7us.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkfcJsDwPAXHDLtKIT2Af1HqTqHdtdmVQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "243824450941-0bghreg1e12es7vt27rd2q59r7b4c7us.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
