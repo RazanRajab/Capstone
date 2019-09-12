@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">FemaleFitnessApp</string>
+    <string name="app_name">Female Fitness</string>
+    <string name="user_name">User Name</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 </resources>
