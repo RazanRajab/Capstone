@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -14,7 +15,7 @@
         android:layout_marginBottom="16dp"
         android:layout_marginTop="30dp"
         android:gravity="center_horizontal"
-        android:text="Keep Your Body Fit"
+        android:text="@string/slogo"
         android:textColor="@color/white"
         android:textSize="28sp"
         android:textStyle="bold" />
@@ -44,7 +45,7 @@
                 <EditText
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/user"
+                    android:drawableStart="@drawable/user"
                     android:id="@+id/name"
                     android:singleLine="true"
                     android:gravity="center"
@@ -63,7 +64,7 @@
                     android:id="@+id/password"
                     android:singleLine="true"
                     android:gravity="center"
-                    android:drawableLeft="@drawable/lock"
+                    android:drawableStart="@drawable/lock"
                     android:hint="@string/password"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
