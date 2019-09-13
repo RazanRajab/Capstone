@@ -8,48 +8,12 @@
     android:background="@drawable/background2"
     tools:context=".MainActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        app:theme="@style/toolbarTheme"
-        android:layout_gravity="top"
-        android:gravity="center">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="bottom"
-            android:gravity="center"
-            android:elevation="12dp">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    style="@style/toolbarTextStyle"
-                    android:text="@string/app_name"
-                    android:textSize="25sp" />
-
-                <TextView
-                    style="@style/toolbarTextStyle"
-                    android:text="Workouts List"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-        </androidx.appcompat.widget.Toolbar>
-    </com.google.android.material.appbar.AppBarLayout>
-
-
-<!--    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">    -->
-
     <include
-            layout="@layout/exercise_card"/>
+        layout="@layout/my_app_bar_layout"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

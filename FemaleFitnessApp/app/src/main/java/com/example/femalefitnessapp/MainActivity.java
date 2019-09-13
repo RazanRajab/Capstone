@@ -1,22 +1,43 @@
 package com.example.femalefitnessapp;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.femalefitnessapp.adapters.ExercisesAdapter;
+import com.example.femalefitnessapp.data.Exercise;
+import com.example.femalefitnessapp.data.ExercisesAsyncTask;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbar)
     Toolbar myToolBar;
+    @BindView(R.id.toolbar_title)
+    TextView title;
+    @BindView(R.id.recycler_view)RecyclerView mRecyclerView;
+    private FirebaseAuth firebaseAuth;
+    private static ExercisesAdapter mExercisesAdapter;
+
+    private ArrayList<Exercise> exercises = new ArrayList<>();
+    private static Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,15 +45,21 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        myToolBar.inflateMenu(R.menu.settings);
+        firebaseAuth = FirebaseAuth.getInstance();
 
-        Intent n = new Intent(this, ExerciseActivity.class);
-        startActivity(n);
+        setSupportActionBar(myToolBar);
+        title.setText("Workouts List");
+        setTitle("");
+
+        context = getApplicationContext();
+        initRecyclerView();
+
+        callTheAsycTask();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.settings, menu);
+        getMenuInflater().inflate(R.menu.settings,menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -40,14 +67,51 @@ public class MainActivity extends Activity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.all:
+                callTheAsycTask();
                 break;
             case R.id.favorite:
                 break;
             case R.id.log_out:
+                LogOut();
                 break;
             default:
         }
         return super.onOptionsItemSelected(item);
     }
+    private void LogOut() {
+        firebaseAuth.signOut();
+        startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+        finish();
+    }
+
+    public void initRecyclerView() {
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
+        mExercisesAdapter = new ExercisesAdapter(exercises, context);
+        mRecyclerView.setAdapter(mExercisesAdapter);
+
+        mExercisesAdapter.setItemClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
+                int position = viewHolder.getAdapterPosition();
+                Intent n = new Intent(context, ExerciseActivity.class);
+                Gson gson = new Gson();
+                n.putExtra(Exercise.class.getName(), gson.toJson(mExercisesAdapter.getExerecises().get(position)));
+                startActivity(n);
+            }
+        });
+    }
+
+    private void callTheAsycTask(){
+         new ExercisesAsyncTask(){
+             @Override
+             protected void onPostExecute(List<Exercise> result) {
+                 super.onPostExecute(result);
+                 mExercisesAdapter.setExercises(result);
+             }
+         }.execute();
+        mExercisesAdapter.notifyDataSetChanged();
+    }
 
 }
+

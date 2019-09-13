@@ -1,13 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <item
-        android:id="@+id/favorite"
-        android:icon="@drawable/star"
-        android:title="Favorite Exercises"/>
-    <item
-        android:id="@+id/all"
-        android:title="All Exercises"/>
-    <item
-        android:id="@+id/log_out"
-        android:title="Log Out"/>
+        android:icon="@drawable/ic_settings"
+        android:title=""
+        app:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/favorite"
+                android:icon="@drawable/star"
+                android:title="Favorite Exercises"
+                app:showAsAction="ifRoom" />
+            <item
+                android:id="@+id/all"
+                android:icon="@drawable/ic_home"
+                android:title="All Exercises"
+                app:showAsAction="ifRoom" />
+            <item
+                android:id="@+id/log_out"
+                android:icon="@drawable/ic_logout"
+                android:title="Log Out"
+                app:showAsAction="ifRoom" />
+        </menu>
+    </item>
 </menu>

@@ -1,0 +1,24 @@
+<com.google.android.material.appbar.AppBarLayout android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    app:theme="@style/toolbarTheme"
+    android:layout_gravity="top"
+    android:gravity="center"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:elevation="12dp">
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            style="@style/toolbarTextStyle"
+            android:textSize="22sp" />
+
+    </androidx.appcompat.widget.Toolbar>
+</com.google.android.material.appbar.AppBarLayout>

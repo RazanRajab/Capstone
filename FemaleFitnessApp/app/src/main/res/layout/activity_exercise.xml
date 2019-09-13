@@ -9,6 +9,9 @@
     android:background="@drawable/background2"
     tools:context=".ExerciseActivity">
 
+    <include
+        layout="@layout/my_app_bar_layout"/>
+
     <com.google.android.exoplayer2.ui.SimpleExoPlayerView
         android:id="@+id/mExoPlayer"
         android:layout_width="fill_parent"
@@ -33,6 +36,7 @@
         android:layout_marginTop="20dp"
         android:text="Remove From Favorite"
         android:textStyle="bold"
+        android:textSize="18dp"
         android:textColor="@color/black"
         android:textAllCaps="false"
         android:gravity="center"
