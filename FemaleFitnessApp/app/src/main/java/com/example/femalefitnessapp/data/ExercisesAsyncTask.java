@@ -16,7 +16,7 @@ import java.util.List;
 
 public class ExercisesAsyncTask extends AsyncTask<Void, Void, List<Exercise>> {
     private FirebaseFirestore db;
-    List<Exercise> exercises;
+    private List<Exercise> exercises;
 
     public ExercisesAsyncTask(){
         exercises = new ArrayList<>();
@@ -37,6 +37,7 @@ public class ExercisesAsyncTask extends AsyncTask<Void, Void, List<Exercise>> {
                             exercises.add(e);
                         }
                         // update based on adapter
+                        onPostExecute(exercises);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

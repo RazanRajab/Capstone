@@ -39,10 +39,10 @@ public class MainActivity extends AppCompatActivity {
     TextView title;
     @BindView(R.id.recycler_view)RecyclerView mRecyclerView;
     private FirebaseAuth firebaseAuth;
-    private static ExercisesAdapter mExercisesAdapter;
+    private ExercisesAdapter mExercisesAdapter;
 
     private ArrayList<Exercise> exercises = new ArrayList<>();
-    private static Context context;
+    private Context context;
     private List<Exercise> favorites = new ArrayList<>();
     private AppDatabase db;
 
@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         setUpViewModel();
 
         callTheAsycTask();
+
     }
 
     @Override
@@ -119,9 +120,9 @@ public class MainActivity extends AppCompatActivity {
              protected void onPostExecute(List<Exercise> result) {
                  super.onPostExecute(result);
                  mExercisesAdapter.setExercises(result);
+                 mExercisesAdapter.notifyDataSetChanged();
              }
          }.execute();
-        mExercisesAdapter.notifyDataSetChanged();
     }
 
     public void setUpViewModel(){
