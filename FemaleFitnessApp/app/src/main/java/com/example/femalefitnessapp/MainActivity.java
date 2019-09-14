@@ -3,6 +3,7 @@ package com.example.femalefitnessapp;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,12 +12,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.femalefitnessapp.adapters.ExercisesAdapter;
+import com.example.femalefitnessapp.data.AppDatabase;
 import com.example.femalefitnessapp.data.Exercise;
 import com.example.femalefitnessapp.data.ExercisesAsyncTask;
+import com.example.femalefitnessapp.data.FavoritesViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
 
@@ -38,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Exercise> exercises = new ArrayList<>();
     private static Context context;
+    private List<Exercise> favorites = new ArrayList<>();
+    private AppDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
 
         context = getApplicationContext();
         initRecyclerView();
+        db = AppDatabase.getInstance(getApplicationContext());
+        setUpViewModel();
 
         callTheAsycTask();
     }
@@ -70,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
                 callTheAsycTask();
                 break;
             case R.id.favorite:
+                mExercisesAdapter.setExercises(favorites);
+                mExercisesAdapter.notifyDataSetChanged();
                 break;
             case R.id.log_out:
                 LogOut();
@@ -113,5 +124,18 @@ public class MainActivity extends AppCompatActivity {
         mExercisesAdapter.notifyDataSetChanged();
     }
 
+    public void setUpViewModel(){
+            Log.d("MyLog","setUpViewModel");
+            FavoritesViewModel viewModel = ViewModelProviders.of(this).get(FavoritesViewModel.class);
+            //movies.addAll(favorites);
+            viewModel.getFavorites().observe(this, new Observer<List<Exercise>>() {
+                @Override
+                public void onChanged(List<Exercise> fMovies) {
+                    favorites.clear();
+                    favorites.addAll(fMovies);
+                    mExercisesAdapter.notifyDataSetChanged();
+                }
+            });
+        }
 }
 
