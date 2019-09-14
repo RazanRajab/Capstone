@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/exercise_info"
+    android:layout_width="260dp"
+    android:layout_height="40dp"
+    android:layout_marginStart="20dp"
+    android:textColor="@color/black"
+    android:background="@color/white"
+    android:text="hello"
+    android:gravity="left|center"
+    android:textSize="16sp"
+    android:textStyle="bold"/>
+

@@ -1,5 +1,7 @@
 package com.example.femalefitnessapp;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,6 +24,7 @@ import com.example.femalefitnessapp.data.AppDatabase;
 import com.example.femalefitnessapp.data.Exercise;
 import com.example.femalefitnessapp.data.ExercisesAsyncTask;
 import com.example.femalefitnessapp.data.FavoritesViewModel;
+import com.example.femalefitnessapp.widget.FavoriteExercisesWidget;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
 
@@ -30,6 +33,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static java.security.AccessController.getContext;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -131,12 +136,20 @@ public class MainActivity extends AppCompatActivity {
             //movies.addAll(favorites);
             viewModel.getFavorites().observe(this, new Observer<List<Exercise>>() {
                 @Override
-                public void onChanged(List<Exercise> fMovies) {
+                public void onChanged(List<Exercise> exercises) {
                     favorites.clear();
-                    favorites.addAll(fMovies);
+                    favorites.addAll(exercises);
                     mExercisesAdapter.notifyDataSetChanged();
+                    addFavoritesToWidget(exercises);
                 }
             });
-        }
-}
+    }
 
+    private void addFavoritesToWidget(List<Exercise> e){
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
+        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(
+                new ComponentName(getApplicationContext(), FavoriteExercisesWidget.class));
+        FavoriteExercisesWidget.updateAppWidget(getApplicationContext(), appWidgetManager, appWidgetIds, e);
+    }
+
+}

@@ -2,13 +2,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background2"
+
     android:orientation="vertical"
     android:padding="@dimen/widget_margin">
 
     <TextView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:drawableStart="@drawable/star"
+        android:drawableEnd="@drawable/star"
         android:text="Your Favorite Workouts"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
         android:textColor="@color/black"
         android:background="@color/white"/>
 
