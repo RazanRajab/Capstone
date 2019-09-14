@@ -5,15 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
     android:background="@drawable/background2"
     tools:context=".ExerciseActivity">
 
     <include
         layout="@layout/my_app_bar_layout"/>
 
-    <com.google.android.exoplayer2.ui.SimpleExoPlayerView
-        android:id="@+id/mExoPlayer"
+    <com.google.android.youtube.player.YouTubePlayerView
+        android:id="@+id/youtube_view"
         android:layout_width="fill_parent"
         android:layout_height="400dp" />
 
@@ -22,10 +21,10 @@
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginTop="30dp"
-        android:text="Repeat 12 Times"
         android:textStyle="bold"
         android:textSize="18dp"
         android:textColor="@color/black"
+        android:layout_gravity="center"
         android:gravity="center"
         android:background="@color/white"/>
 
@@ -34,11 +33,12 @@
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
-        android:text="Remove From Favorite"
+        android:text="Add To Favorite"
         android:textStyle="bold"
         android:textSize="18dp"
         android:textColor="@color/black"
         android:textAllCaps="false"
+        android:layout_gravity="center"
         android:gravity="center"
         android:background="@color/white"/>
 

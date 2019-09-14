@@ -1,9 +1,11 @@
-package com.example.femalefitnessapp;
+package com.example.femalefitnessapp.widget;
 
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.widget.RemoteViews;
+
+import com.example.femalefitnessapp.R;
 
 /**
  * Implementation of App Widget functionality.
@@ -13,7 +15,6 @@ public class FavoriteExercisesWidget extends AppWidgetProvider {
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
-        CharSequence widgetText = context.getString(R.string.appwidget_text);
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.favorite_exercises_widget);
 
