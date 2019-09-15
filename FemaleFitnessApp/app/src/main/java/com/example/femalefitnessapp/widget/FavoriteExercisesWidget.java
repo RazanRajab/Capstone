@@ -5,6 +5,7 @@ import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.example.femalefitnessapp.R;
@@ -23,13 +24,14 @@ public class FavoriteExercisesWidget extends AppWidgetProvider {
     public static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int[] appWidgetIds, List<Exercise> favorites) {
 
-        exercises = favorites;
+        Log.d("MyLog","widgetUpdate");
+        exercises=favorites;
         for (int appWidgetId : appWidgetIds) {
             // Construct the RemoteViews object
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.favorite_exercises_widget);
             Intent intent = new Intent(context, widgetListAdapter.class);
             views.setRemoteAdapter(R.id.widget_favorite_list, intent);
-            ComponentName component = new ComponentName(context, widgetListAdapter.class);
+            ComponentName component = new ComponentName(context, FavoriteExercisesWidget.class);
             appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetId, R.id.widget_favorite_list);
             appWidgetManager.updateAppWidget(component, views);
         }

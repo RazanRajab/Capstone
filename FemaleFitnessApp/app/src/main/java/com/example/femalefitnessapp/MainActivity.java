@@ -34,7 +34,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static java.security.AccessController.getContext;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -141,17 +140,17 @@ public class MainActivity extends AppCompatActivity {
                     favorites.addAll(exercises);
                     mExercisesAdapter.notifyDataSetChanged();
                     for (int i=0; i< exercises.size();i++)
-                    Log.d("MyLog", exercises.get(i).getId()+"");
+                    Log.d("MyLogWidget", exercises.get(i).getId()+"");
                     addFavoritesToWidget(exercises);
                 }
             });
     }
 
     private void addFavoritesToWidget(List<Exercise> e){
-        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         int[] appWidgetIds = appWidgetManager.getAppWidgetIds(
-                new ComponentName(getApplicationContext(), FavoriteExercisesWidget.class));
-        FavoriteExercisesWidget.updateAppWidget(getApplicationContext(), appWidgetManager, appWidgetIds, e);
+                new ComponentName(context, FavoriteExercisesWidget.class));
+        FavoriteExercisesWidget.updateAppWidget(context, appWidgetManager, appWidgetIds, e);
     }
 
 }

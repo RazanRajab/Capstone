@@ -1,6 +1,7 @@
 package com.example.femalefitnessapp.widget;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
@@ -41,6 +42,7 @@ public class MyRemoteViewsFactory implements RemoteViewsService.RemoteViewsFacto
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_card);
         Exercise e = exercises.get(i);
         views.setTextViewText(R.id.exercise_info, e.getName()+" : "+e.getRepeat_times()+" Times");
+        Log.d("MyLog",e.getName());
         return views;
     }
 
