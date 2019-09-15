@@ -6,4 +6,8 @@
     <string name="sign_up">Sign Up</string>
     <string name="add_widget">Add widget</string>
     <string name="slogo">Keep Your Body Fit</string>
+    <string name="YoutubeViewDescription">This is a YoutubePlayerView to display exercise video</string>
+    <string name="button_favorite_description">This button to add or delete exercise from favorites</string>
+    <string name="logo_image_desc">This is a logo image</string>
+    <string name="menu_desc">This is a menu</string>
 </resources>

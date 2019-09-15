@@ -1,11 +1,15 @@
 package com.example.femalefitnessapp;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.transition.Slide;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,6 +35,7 @@ public class LoginActivity extends Activity {
 
     private FirebaseAuth mAuth;
     private SharedPreferences s;
+    private Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +45,13 @@ public class LoginActivity extends Activity {
         mAuth = FirebaseAuth.getInstance();
         s= getSharedPreferences("userName", Context.MODE_PRIVATE);
         getSavedUserName();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
+            Slide slide = new Slide(Gravity.BOTTOM);
+            slide.addTarget(R.id.layout_motion);
+            getWindow().setEnterTransition(slide);
+        }
 
         sign_in.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +77,9 @@ public class LoginActivity extends Activity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            startActivity(new Intent(LoginActivity.this, MainActivity.class),bundle);
+                        }
                         finish();
                     } else {
                         Toast.makeText(LoginActivity.this, task.getException().getMessage(),Toast.LENGTH_LONG).show();

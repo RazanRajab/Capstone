@@ -1,11 +1,16 @@
 package com.example.femalefitnessapp;
 
+import android.app.ActivityOptions;
+import android.app.slice.Slice;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.transition.Slide;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -49,12 +54,20 @@ public class MainActivity extends AppCompatActivity {
     private Context context;
     private List<Exercise> favorites = new ArrayList<>();
     private AppDatabase db;
+    private Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
+            Slide slide = new Slide(Gravity.BOTTOM);
+            slide.addTarget(R.id.recycler_view);
+            getWindow().setEnterTransition(slide);
+        }
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -68,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
         setUpViewModel();
 
         callTheAsycTask();
-
     }
 
     @Override
@@ -113,7 +125,9 @@ public class MainActivity extends AppCompatActivity {
                 Intent n = new Intent(context, ExerciseActivity.class);
                 Gson gson = new Gson();
                 n.putExtra(Exercise.class.getName(), gson.toJson(mExercisesAdapter.getExerecises().get(position)));
-                startActivity(n);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    startActivity(n, bundle);
+                }
             }
         });
     }

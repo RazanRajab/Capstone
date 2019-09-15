@@ -11,7 +11,10 @@ import androidx.lifecycle.Observer;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.os.Bundle;
+import android.transition.Explode;
+import android.transition.Slide;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -33,8 +36,6 @@ public class ExerciseActivity extends YouTubeBaseActivity {
 
     @BindView(R.id.repeat_times)
     TextView repeating;
-    @BindView(R.id.toolbar)
-    Toolbar mToolBar;
     @BindView(R.id.add_favorite)
     Button favorite;
     @BindView(R.id.toolbar_title)
@@ -55,6 +56,14 @@ public class ExerciseActivity extends YouTubeBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise);
         ButterKnife.bind(this);
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            Slide slide = new Slide(Gravity.TOP);
+            slide.addTarget(R.id.repeat_times);
+            slide.addTarget(R.id.add_favorite);
+            getWindow().setEnterTransition(slide);
+            getWindow().setExitTransition(new Explode());
+        }
 
         db = AppDatabase.getInstance(getApplicationContext());
 
@@ -150,4 +159,5 @@ public class ExerciseActivity extends YouTubeBaseActivity {
         outState.putParcelable("exercise", e);
         super.onSaveInstanceState(outState);
     }
+
 }

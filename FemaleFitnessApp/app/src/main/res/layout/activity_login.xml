@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:focusable="true"
     android:background="@drawable/background2"
     tools:context=".LoginActivity">
 
@@ -21,6 +22,7 @@
         android:textStyle="bold" />
 
     <RelativeLayout
+        android:id="@+id/layout_motion"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/title"
@@ -47,6 +49,7 @@
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/user"
                     android:id="@+id/name"
+                    android:nextFocusDown="@+id/password"
                     android:singleLine="true"
                     android:gravity="center"
                     android:hint="@string/user_name"
@@ -62,6 +65,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:id="@+id/password"
+                    android:nextFocusDown="@+id/sign_in"
                     android:singleLine="true"
                     android:gravity="center"
                     android:drawableStart="@drawable/lock"
@@ -71,6 +75,7 @@
 
             <Button
                 android:id="@+id/sign_in"
+                android:nextFocusDown="@+id/sign_up"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
@@ -107,6 +112,7 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/user_profile_image_background"
         android:elevation="4dp"
-        android:src="@drawable/logo" />
+        android:src="@drawable/logo"
+        android:contentDescription="@string/logo_image_desc"/>
 
 </RelativeLayout>

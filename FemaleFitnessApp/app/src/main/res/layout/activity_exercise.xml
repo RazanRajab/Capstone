@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:focusable="true"
     android:background="@drawable/background2"
     tools:context=".ExerciseActivity">
 
@@ -14,7 +14,9 @@
     <com.google.android.youtube.player.YouTubePlayerView
         android:id="@+id/youtube_view"
         android:layout_width="fill_parent"
-        android:layout_height="400dp" />
+        android:layout_height="400dp"
+        android:nextFocusDown="@+id/repeat_times"
+        android:contentDescription="@string/YoutubeViewDescription"/>
 
     <TextView
         android:id="@+id/repeat_times"
@@ -26,7 +28,8 @@
         android:textColor="@color/black"
         android:layout_gravity="center"
         android:gravity="center"
-        android:background="@color/white"/>
+        android:background="@color/white"
+        android:nextFocusDown="@+id/add_favorite"/>
 
     <Button
         android:id="@+id/add_favorite"
@@ -40,6 +43,7 @@
         android:textAllCaps="false"
         android:layout_gravity="center"
         android:gravity="center"
-        android:background="@color/white"/>
+        android:background="@color/white"
+        android:contentDescription="@string/button_favorite_description"/>
 
 </LinearLayout>
