@@ -33,7 +33,7 @@ public class ExercisesAsyncTask extends AsyncTask<Void, Void, List<Exercise>> {
                         for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                             Log.d("Fetch Exercises", document.getId() + " => " + document.getData());
                             Exercise e=document.toObject(Exercise.class);
-
+                            e.setId(Integer.parseInt(document.getId()));
                             exercises.add(e);
                         }
                         // update based on adapter

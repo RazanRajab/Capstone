@@ -140,6 +140,8 @@ public class MainActivity extends AppCompatActivity {
                     favorites.clear();
                     favorites.addAll(exercises);
                     mExercisesAdapter.notifyDataSetChanged();
+                    for (int i=0; i< exercises.size();i++)
+                    Log.d("MyLog", exercises.get(i).getId()+"");
                     addFavoritesToWidget(exercises);
                 }
             });

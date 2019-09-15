@@ -2,10 +2,16 @@ package com.example.femalefitnessapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.LifecycleRegistry;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -62,6 +68,18 @@ public class ExerciseActivity extends YouTubeBaseActivity {
         //setTitle("");
         repeating.setText("Repeat "+e.getRepeat_times()+" Times");
         initYoutubePlayer(e);
+
+       /* mLifecycleOwner = new LifecycleOwner() {
+            @NonNull
+            @Override
+            public Lifecycle getLifecycle() {
+                return mLifecycleRegistry;
+            }
+        };
+        mLifecycleRegistry=new LifecycleRegistry(mLifecycleOwner);
+
+        */
+
         favorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
