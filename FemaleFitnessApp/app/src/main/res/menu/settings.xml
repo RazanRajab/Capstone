@@ -11,17 +11,17 @@
             <item
                 android:id="@+id/favorite"
                 android:icon="@drawable/star"
-                android:title="Favorite Exercises"
+                android:title="@string/favorite_exercises"
                 app:showAsAction="ifRoom" />
             <item
                 android:id="@+id/all"
                 android:icon="@drawable/ic_home"
-                android:title="All Exercises"
+                android:title="@string/all_exercises"
                 app:showAsAction="ifRoom" />
             <item
                 android:id="@+id/log_out"
                 android:icon="@drawable/ic_logout"
-                android:title="Log Out"
+                android:title="@string/log_out"
                 app:showAsAction="ifRoom" />
         </menu>
     </item>

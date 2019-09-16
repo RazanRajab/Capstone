@@ -10,7 +10,7 @@
         android:layout_height="50dp"
         android:drawableStart="@drawable/star"
         android:drawableEnd="@drawable/star"
-        android:text="Your Favorite Workouts"
+        android:text="@string/your_favorite_workouts"
         android:textSize="20sp"
         android:textStyle="bold"
         android:gravity="center"

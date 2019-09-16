@@ -46,7 +46,7 @@ public class ExercisesAdapter extends RecyclerView.Adapter<ExercisesAdapter.View
         this.exercises = exercises;
     }
 
-    public List<Exercise> getExerecises(){
+    public List<Exercise> getExercises(){
         return exercises;
     }
 

@@ -1,7 +1,6 @@
 package com.example.femalefitnessapp;
 
 import android.app.ActivityOptions;
-import android.app.slice.Slice;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -53,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Exercise> exercises = new ArrayList<>();
     private Context context;
     private List<Exercise> favorites = new ArrayList<>();
-    private AppDatabase db;
     private Bundle bundle;
 
     @Override
@@ -77,10 +75,9 @@ public class MainActivity extends AppCompatActivity {
 
         context = getApplicationContext();
         initRecyclerView();
-        db = AppDatabase.getInstance(getApplicationContext());
         setUpViewModel();
 
-        callTheAsycTask();
+        callTheAsyncTask();
     }
 
     @Override
@@ -93,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.all:
-                callTheAsycTask();
+                callTheAsyncTask();
                 break;
             case R.id.favorite:
                 mExercisesAdapter.setExercises(favorites);
@@ -112,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
-    public void initRecyclerView() {
+    private void initRecyclerView() {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
         mExercisesAdapter = new ExercisesAdapter(exercises, context);
         mRecyclerView.setAdapter(mExercisesAdapter);
@@ -124,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
                 int position = viewHolder.getAdapterPosition();
                 Intent n = new Intent(context, ExerciseActivity.class);
                 Gson gson = new Gson();
-                n.putExtra(Exercise.class.getName(), gson.toJson(mExercisesAdapter.getExerecises().get(position)));
+                n.putExtra(Exercise.class.getName(), gson.toJson(mExercisesAdapter.getExercises().get(position)));
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     startActivity(n, bundle);
                 }
@@ -132,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void callTheAsycTask(){
+    private void callTheAsyncTask(){
          new ExercisesAsyncTask(){
              @Override
              protected void onPostExecute(List<Exercise> result) {
@@ -143,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
          }.execute();
     }
 
-    public void setUpViewModel(){
+    private void setUpViewModel(){
             Log.d("MyLog","setUpViewModel");
             FavoritesViewModel viewModel = ViewModelProviders.of(this).get(FavoritesViewModel.class);
             //movies.addAll(favorites);

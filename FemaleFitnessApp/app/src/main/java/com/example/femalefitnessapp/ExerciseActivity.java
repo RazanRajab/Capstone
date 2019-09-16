@@ -1,19 +1,12 @@
 package com.example.femalefitnessapp;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.LifecycleRegistry;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 
-import android.content.Context;
-import android.content.ContextWrapper;
 import android.os.Bundle;
 import android.transition.Explode;
 import android.transition.Slide;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -44,7 +37,7 @@ public class ExerciseActivity extends YouTubeBaseActivity {
     YouTubePlayerView mPlayerView;
 
     private Exercise e;
-    YouTubePlayer.OnInitializedListener mOnInitializedListener;
+    private YouTubePlayer.OnInitializedListener mOnInitializedListener;
     private final String YOUTUBE_API = "AIzaSyA8_ylvbhPtbCsdpWsQcngi9d99XB3ktwg";
 
     private AppDatabase db;

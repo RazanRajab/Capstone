@@ -10,4 +10,9 @@
     <string name="button_favorite_description">This button to add or delete exercise from favorites</string>
     <string name="logo_image_desc">This is a logo image</string>
     <string name="menu_desc">This is a menu</string>
+    <string name="add_to_favorite">Add To Favorite</string>
+    <string name="your_favorite_workouts">Your Favorite Workouts</string>
+    <string name="favorite_exercises">Favorite Exercises</string>
+    <string name="all_exercises">All Exercises</string>
+    <string name="log_out">Log Out</string>
 </resources>
